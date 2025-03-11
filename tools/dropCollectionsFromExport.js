@@ -6,7 +6,10 @@ const path = require("path");
 const config = require("../config");
 
 const mongoUri = config.database.sourceUri;
-const exportDir = `${config.backup.exportDirectory}/admin`;
+
+const exportDir = config.restore?.timeMarker
+  ? `${config.backup.exportDirectory}/${config.restore?.timeMarker}/admin`
+  : `${config.backup.exportDirectory}/main/admin`;
 
 async function deleteCollections() {
   console.log("🔗 Conectando a MongoDB...");

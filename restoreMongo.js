@@ -5,7 +5,14 @@ const fs = require("fs");
 const config = require("./config");
 
 const mongoUri = config.database.destinationUri;
-const exportDir = `${config.backup.exportDirectory}/admin`;
+
+const exportDir = config.restore?.timeMarker
+  ? `${config.backup.exportDirectory}/${config.restore?.timeMarker}/admin`
+  : `${config.backup.exportDirectory}/main/admin`;
+
+if (config.backup.timeMarker && !config.restore?.timeMarker) {
+  throw new Error("Debe especificar config.restore.timeMarker para importar.");
+}
 
 if (!fs.existsSync(exportDir)) {
   process.exit(1);

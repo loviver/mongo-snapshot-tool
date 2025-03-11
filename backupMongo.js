@@ -6,7 +6,11 @@ const fs = require("fs");
 const config = require("./config");
 
 const url = config.database.sourceUri;
-const exportDir = `${config.backup.exportDirectory}`;
+
+const exportDir = config.backup.timeMarker
+  ? `${config.backup.exportDirectory}/${new Date().toISOString().replace(/[:.]/g, '-')}`
+  : `${config.backup.exportDirectory}/main`;
+
 const client = new MongoClient(url);
 
 if (!fs.existsSync(exportDir)) {

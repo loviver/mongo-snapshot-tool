@@ -1,0 +1,14 @@
+{
+  "name": "DumpDatabase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "child_process": "^1.0.2",
+    "commander": "^13.1.0",
+    "execa": "^9.5.2",
+    "fs": "^0.0.1-security",
+    "mongodb": "^6.14.2"
+  }
+}
